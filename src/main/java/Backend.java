@@ -13,19 +13,21 @@ import java.util.Scanner;
 public class Backend {
 
     public static String word() {
+        //wählt zufälliges Wort aus File "words.json" aus, das erraten werden muss
 
         JSONParser parser = new JSONParser();
 
-        Random rand = new Random();
+        //https://www.educative.io/edpresso/how-to-generate-random-numbers-in-java
+        Random rand = new Random(); //zum Erzeugen einer Zufallszahl
         int upperbound = 100;
-        int choice = rand.nextInt(upperbound);
+        int choice = rand.nextInt(upperbound); //gibt zufällige Zahl aus zwischen 0 und [upperbound - 1]
         System.out.println(choice); //ausgabe aktuell nur für testzwecke
 
         //https://stackoverflow.com/questions/10926353/how-to-read-json-file-into-java-with-simple-json-library
         try {
             JSONObject a = (JSONObject) parser.parse(new FileReader("src/words.json"));
-            JSONArray b = (JSONArray) a.get("words");
-            String word = (String) b.get(choice);
+            JSONArray b = (JSONArray) a.get("words"); //"files"enthält array mit 100 Worten
+            String word = (String) b.get(choice); //wort an der Stelle [Zufallszahl] wird aus dem array ausgewählz
             System.out.println(word.toUpperCase()); //ausgabe aktuell nur für testzwecke
             return word.toUpperCase(); //Spiel wird nur mit Großbuchstaben gespielt, um Problem mit Casesensitiveness zu umgehen
         } catch (ParseException e) {
@@ -38,6 +40,7 @@ public class Backend {
     }
 
     public static char guess() {
+        //Usereingabe um Wort zu erraten
 
         Scanner scanner = new Scanner(System.in);
 
@@ -46,7 +49,6 @@ public class Backend {
         //https://stackoverflow.com/questions/3696441/converting-a-char-to-uppercase
         System.out.println("guess:");
         //try = strict --> Eingabe wird nur akzeptiert, wenn genau ein char eingegeben wird
-        // if-statement in try: wenn kein letter --> invalid, wenn Kleinbuchstabe --> to UpperCase
         try {
             char guess = scanner.next(".").charAt(0);
             return guess;
@@ -58,12 +60,14 @@ public class Backend {
 
     public static char guessCheck(char guess){
 
+        //wenn Kleinbuchstabe --> to UpperCase (um Probleme mit Casesensitiveness zu umgehen)
         if (guess >= 'a' && guess <= 'z') {
             System.out.print(Character.toUpperCase(guess)); //ausgabe aktuell nur für testzwecke
             return Character.toUpperCase(guess);//ausgabe aktuell nur für testzwecke
         } else if (guess >= 'A' && guess <= 'Z') {
             System.out.println(guess);
             return guess; //ausgabe aktuell nur für testzwecke
+            // else: wenn kein letter --> invalid
         } else {
             System.out.println("Invalid!(guessChecked)"); //ausgabe aktuell nur für testzwecke
             return 0;
