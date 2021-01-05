@@ -45,8 +45,6 @@ public class Backend {
         Scanner scanner = new Scanner(System.in);
 
         //https://www.edureka.co/community/2379/is-it-possible-to-take-char-input-from-scanner
-        //https://stackoverflow.com/questions/4047808/what-is-the-best-way-to-tell-if-a-character-is-a-letter-or-number-in-java-withou
-        //https://stackoverflow.com/questions/3696441/converting-a-char-to-uppercase
         System.out.println("guess:");
         //try = strict --> Eingabe wird nur akzeptiert, wenn genau ein char eingegeben wird
         try {
@@ -59,7 +57,7 @@ public class Backend {
     }
 
     public static char guessCheck(char guess){
-
+        //https://stackoverflow.com/questions/4047808/what-is-the-best-way-to-tell-if-a-character-is-a-letter-or-number-in-java-withou
         //wenn Kleinbuchstabe --> to UpperCase (um Probleme mit Casesensitiveness zu umgehen)
         if (guess >= 'a' && guess <= 'z') {
             System.out.print(Character.toUpperCase(guess)); //ausgabe aktuell nur für testzwecke
@@ -100,7 +98,7 @@ public class Backend {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        int lives = 5;
+        int lives = 5; // Momentan noch willkrülich gewählt
         String word = word();
         char [] compare = word.toCharArray();
         char [] visual = new char[word.length()];
