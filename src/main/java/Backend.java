@@ -118,13 +118,14 @@ public class Backend {
                 for(int i = 0; i < word.length(); i++){
                     if(guess == compare[i]){
                         visual[i] = guess;
-                        System.out.println(visual);
                     }
                 }
                 if(Arrays.equals(visual, compare)){
+                    System.out.println(visual);
                     System.out.println("You won!");
                     break;
                 }
+                System.out.println(visual);
             }
 
         }
